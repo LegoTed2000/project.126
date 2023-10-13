@@ -11,3 +11,19 @@ body {
     font-size: 20px;
     color: rgb(0, 0, 0);
 }
+
+.first_song {
+    width: 300px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#song_name {
+    width: 300px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+canvas {
+    border: 5px solid brown;
+}
