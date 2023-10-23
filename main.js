@@ -4,6 +4,9 @@ leftWristx = 0;
 leftWristy = 0;
 rightWristx = 0;
 rightWristy = 0;
+scoreleftwrist = 0;
+scorerightwrist = 0;
+song_playing = "";
 
 function preload() {
     petter_pan = loadSound("music2.mp3");
@@ -18,12 +21,28 @@ function setup() {
     video.hide();
 
     poseNet = ml5.poseNet(video, gotResuts);
-    pose.on("pose", gotposses)
+    poseNet.on("pose", gotposses)
 }
 
 function draw() {
     image(video, 0, 0, 800, 700);
-}
+
+    petter_pan.isPlaying();
+
+    fill("#fc05d7");
+    stroke("#fc0505");
+
+    if(scoreleftwrist > 0.2) {
+        circle(leftWristx, leftWristy , 20);
+        petter_pan.stop();
+    }
+    if(petter_pan.isPlaying(false)) {
+        petter_pan.play();
+        document.getElementById("song_name").innerHTML = "the song that is playing is Petter Pan Theme Song";
+    }
+
+        }
+
 
 function sound() {
     petter_pan.play();
@@ -38,6 +57,9 @@ function gotResuts() {
 function gotposses(results) {
     if (results.length > 0) {
         console.log(results);
+
+        scoreleftwrist = results[0].pose.keypoints[9].scoreleftwrist;
+
         leftWristx = results[0].pose.leftWrist.x;
         leftWristy = results[0].pose.leftWrist.y;
         console.log("left wrist x is - "+ leftWristx + "left wrist y is - "+ leftWristy);
