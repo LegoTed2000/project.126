@@ -27,7 +27,7 @@ function setup() {
 function draw() {
     image(video, 0, 0, 800, 700);
 
-    petter_pan.isPlaying();
+     petter = petter_pan.isPlaying();
 
     fill("#fc05d7");
     stroke("#fc0505");
@@ -35,11 +35,26 @@ function draw() {
     if(scoreleftwrist > 0.2) {
         circle(leftWristx, leftWristy , 20);
         petter_pan.stop();
+        document.getElementById("song_name").innerHTML = "";
     }
     if(petter_pan.isPlaying(false)) {
         petter_pan.play();
         document.getElementById("song_name").innerHTML = "the song that is playing is Petter Pan Theme Song";
     }
+
+    harry = harry_potter.isPlaying();
+
+    
+    if(scorerightwrist > 0.2) {
+        circle(rightWristx, rightWristy , 20);
+        harry_potter.stop();
+        document.getElementById("song_name").innerHTML = "";
+    }
+    if(harry_potter.isPlaying(false)) {
+        harry_potter.play();
+        document.getElementById("song_name").innerHTML = "the song that is playing is Harry Potter Theme Song";
+    }
+
 
         }
 
